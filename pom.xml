@@ -3,6 +3,8 @@
   <groupId>cn.com.FruitSalesPlatform</groupId>
   <artifactId>Fruit-Sales-Platform</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <url>http://maven.apache.org</url>
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -194,7 +196,38 @@
 				<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 			</configuration>
 		</plugin>
-			
+		<!-- generate java doc -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<version>2.9.1</version>
+			<configuration>
+				<javadocDirectory>target/javadoc</javadocDirectory>
+				<reportOutputDirectory>target/javadoc</reportOutputDirectory>
+				<charset>UTF-8</charset>
+				<encoding>UTF-8</encoding>
+				<docencoding>UTF-8</docencoding>
+				<show>private</show>
+			</configuration>
+		</plugin>
+
+		<!-- 部署至本机 -->
+		<!--  <plugin>
+			<groupId>org.codehaus.cargo</groupId>
+			<artifactId>cargo-maven2-plugin</artifactId>
+			<version>1.0</version>
+			<configuration>
+				<container>
+					<containerId>tomcat7x</containerId>
+					<home>E:\tomcat\apache-tomcat-7.0.107</home>
+				</container>
+				<configuration>
+					<type>existing</type>
+					<home>E:\tomcat\apache-tomcat-7.0.107</home>
+				</configuration>
+			</configuration>
+		</plugin> -->
+		
   	</plugins>
   </build>
 </project>

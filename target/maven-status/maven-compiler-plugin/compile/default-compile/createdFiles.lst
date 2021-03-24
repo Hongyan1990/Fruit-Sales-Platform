@@ -1,0 +1,8 @@
+com\fruitsalesplatform\interceptor\LoginInterceptor.class
+com\fruitsalesplatform\controller\TestController.class
+com\fruitsalesplatform\dao\UserInfoMapper.class
+com\fruitsalesplatform\service\Impl\UserServiceImpl.class
+com\fruitsalesplatform\db\DBConnectionTest.class
+com\fruitsalesplatform\controller\UserController.class
+com\fruitsalesplatform\po\UserInfo.class
+com\fruitsalesplatform\service\UserService.class
