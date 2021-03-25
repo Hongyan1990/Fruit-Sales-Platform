@@ -177,7 +177,25 @@
 	</dependency>
   </dependencies>
   <build>
-  	<finalName>fruit_sales_platform</finalName>
+  	<finalName>Fruit-Sales-Platform</finalName>
+  	<resources>
+         <resource>
+             <directory>src/main/java</directory>
+             <includes>
+                 <include>**/*.properties</include>
+                 <include>**/*.xml</include>
+             </includes>
+             <filtering>false</filtering>
+         </resource>
+         <resource>
+              <directory>src/main/resources</directory>
+              <includes>
+                  <include>**/*.properties</include>
+                  <include>**/*.xml</include>
+              </includes>
+              <filtering>false</filtering>
+          </resource>
+     </resources>
   	<plugins>
   		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
@@ -193,7 +211,8 @@
 			<artifactId>maven-war-plugin</artifactId>
 			<version>2.3</version>
 			<configuration>
-				<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+				<webXml>WebContent/WEB-INF/web.xml</webXml>
+				<warSourceDirectory>WebContent</warSourceDirectory>  
 			</configuration>
 		</plugin>
 		<!-- generate java doc -->

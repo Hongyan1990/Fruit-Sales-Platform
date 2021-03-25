@@ -5,20 +5,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fruitsalesplatform.po.UserInfo;
 import com.fruitsalesplatform.service.UserService;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping
 public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/showinfo/{userId}")
-	public String showUserInfo(ModelMap modelMap, @PathVariable int userId) {
+	@RequestMapping("/user/{userId}")
+	@ResponseBody
+	public UserInfo showUserInfo(ModelMap modelMap, @PathVariable int userId) {
 		UserInfo userInfo = userService.getUserById(userId);
 		modelMap.addAttribute("userInfo", userInfo);
-		return "user/showinfo";
+		return userInfo;
 	}
 }
