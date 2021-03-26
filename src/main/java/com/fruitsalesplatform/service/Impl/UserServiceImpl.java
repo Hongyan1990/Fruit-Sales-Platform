@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fruitsalesplatform.dao.UserInfoMapper;
+import com.fruitsalesplatform.po.BookInfo;
 import com.fruitsalesplatform.po.UserInfo;
 import com.fruitsalesplatform.service.UserService;
 
@@ -24,5 +25,12 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(UserInfo userInfo) {
 		userInfoMapper.updateUser(userInfo);
 	}
+
+//	public BookInfo queryBookById(int id) {
+//		
+//		return userInfoMapper.queryBookById(id);
+//	}
+	
+	
 
 }

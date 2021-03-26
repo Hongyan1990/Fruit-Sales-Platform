@@ -22,26 +22,25 @@ public class BookController {
 	
 	@RequestMapping(value="/book/{bid}", method= {RequestMethod.GET})
 	@ResponseBody
-	public BookInfo queryBookById(ModelMap modelMap, @PathVariable int bid) {
-		BookInfo bookInfo = bookService.selectBookById(bid);
-		return bookInfo;
+	public BookInfo queryBookInfo(ModelMap modelMap, @PathVariable int bid) {
+		BookInfo book = bookService.queryBookById(bid);
+		return book;
 	}
 	
 	@RequestMapping(value="/books", method= {RequestMethod.GET})
 	@ResponseBody
-	public List<BookInfo> queryBooks(ModelMap modelMap) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("bookid", null);
-		List<BookInfo> books = bookService.selectAllBooks(map);
+	public List<Map<String, Object>> queryBooks(ModelMap modelMap) {
+		Map map = null;
+		List<Map<String, Object>> books = bookService.queryBooks(map);
 		return books;
 	}
 	
-	@RequestMapping(value="/books/{tid}", method= {RequestMethod.GET})
+	@RequestMapping(value="/books/{cid}", method= {RequestMethod.GET})
 	@ResponseBody
-	public List<BookInfo> queryBooks(ModelMap modelMap, @PathVariable int tid) {
+	public List<Map<String, Object>> queryBooksByCid(ModelMap modelMap, @PathVariable int cid) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("bookid", tid);
-		List<BookInfo> books = bookService.selectAllBooks(map);
+		map.put("cid", cid);
+		List<Map<String, Object>> books = bookService.queryBooks(map);
 		return books;
 	}
 }

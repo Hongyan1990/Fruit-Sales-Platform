@@ -1,5 +1,7 @@
 package com.fruitsalesplatform.test.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,10 +29,9 @@ public class TestUserService {
 	
 	@Test
 	public void testQueryById1() {
-		UserInfo userInfo = userService.getUserById(6);
-		BookInfo book = bookService.selectBookById(1);
-		System.out.println(book.getBookName());
-		LOGGER.info(JSON.toJSON(userInfo));
+//		UserInfo userInfo = userService.getUserById(6);
+		BookInfo book = bookService.queryBookById(1);
+		LOGGER.info(JSON.toJSON(book));
 	}
 	
 }

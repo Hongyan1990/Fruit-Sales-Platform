@@ -6,6 +6,6 @@ import java.util.Map;
 import com.fruitsalesplatform.po.BookInfo;
 
 public interface BookService {
-	public BookInfo selectBookById(int id);
-	public List<BookInfo> selectAllBooks(Map map);
+	BookInfo queryBookById(int id);
+	List<Map<String, Object>> queryBooks(Map map);
 }

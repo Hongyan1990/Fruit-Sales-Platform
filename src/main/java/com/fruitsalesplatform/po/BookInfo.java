@@ -6,8 +6,10 @@ public class BookInfo {
 	private String bookName;
 	private String author;
 	private String publish;
-	private String introdution;
+	private String introduction;
+	private float price;
 	private String img;
+	private BookTypeInfo bookType;
 	
 	public int getBookId() {
 		return bookId;
@@ -39,17 +41,29 @@ public class BookInfo {
 	public void setPublish(String publish) {
 		this.publish = publish;
 	}
-	public String getIntrodution() {
-		return introdution;
+	public String getIntroduction() {
+		return introduction;
 	}
-	public void setIntrodution(String introdution) {
-		this.introdution = introdution;
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
 	public String getImg() {
 		return img;
 	}
 	public void setImg(String img) {
 		this.img = img;
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	public BookTypeInfo getBookType() {
+		return bookType;
+	}
+	public void setBookType(BookTypeInfo bookType) {
+		this.bookType = bookType;
 	}
 	
 }

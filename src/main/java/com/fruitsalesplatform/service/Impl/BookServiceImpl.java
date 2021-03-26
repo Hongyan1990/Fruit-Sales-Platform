@@ -6,23 +6,23 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fruitsalesplatform.dao.BookInfoMapper;
+import com.fruitsalesplatform.dao.BookMapper;
 import com.fruitsalesplatform.po.BookInfo;
 import com.fruitsalesplatform.service.BookService;
 
 @Service("bookService")
 public class BookServiceImpl implements BookService {
 	@Autowired
-	private BookInfoMapper bookInfoMapper;
+	private BookMapper bookMapper;
 
-	public BookInfo selectBookById(int id) {
-		BookInfo bookInfo = bookInfoMapper.selectBookById(id);
-		return bookInfo;
+	public BookInfo queryBookById(int id) {
+		return bookMapper.queryBookById(id);
 	}
 
-	public List<BookInfo> selectAllBooks(Map map) {
-		List<BookInfo> books = bookInfoMapper.selectAllBooks(map);
-		return books;
+	public List<Map<String, Object>> queryBooks(Map map) {
+		return bookMapper.queryBooks(map);
 	}
 
+	
+	
 }

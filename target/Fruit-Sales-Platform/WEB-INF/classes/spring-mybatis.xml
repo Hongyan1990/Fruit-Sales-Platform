@@ -71,7 +71,7 @@
 	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:SqlMapConfig.xml"></property>
-		<!-- <property name="mapperLocations" value="classpath:com/fruitsalesplatform/mapper/*.xml"></property> -->
+		<property name="mapperLocations" value="classpath:com/fruitsalesplatform/mapper/*.xml"></property>
 	</bean>
 	<!-- 扫描接口包 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

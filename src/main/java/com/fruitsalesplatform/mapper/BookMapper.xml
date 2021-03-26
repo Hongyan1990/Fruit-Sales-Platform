@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fruitsalesplatform.dao.BookMapper">
+	<resultMap type="BookInfo" id="bookResultMap">
+        <id column="bookid" property="bookId" />
+        <result column="cid" property="cId" />
+        <result column="bookname" property="bookName" />
+        <result column="author" property="author" />
+        <result column="publish" property="publish" />
+        <result column="price" property="price" />
+        <result column="introduction" property="introduction" />
+        <result column="img" property="img" />
+        <association property="bookType" javaType="BookTypeInfo" >
+            <id column="cid" property="cId" />
+            <result column="cname" property="cName" />
+            <result column="intr" property="intr" />
+        </association>
+    </resultMap>
+	<select id="queryBookById" parameterType="int" resultMap="bookResultMap">
+        select 
+        	b.bookid,
+        	b.bookname,
+        	b.author,
+        	b.publish,
+        	b.price,
+        	b.introduction,
+        	b.img,
+        	c.cid,
+        	c.cname,
+        	c.intr
+        from
+        	book b left outer join bookclass c on b.cid=c.cid
+        where
+        	b.bookid=#{id}
+    </select>
+    <resultMap type="java.util.HashMap" id="booksResultMap">
+        <id column="bookid" property="bookId" />
+        <result column="cid" property="cId" />
+        <result column="bookname" property="bookName" />
+        <result column="author" property="author" />
+        <result column="publish" property="publish" />
+        <result column="price" property="price" />
+        <result column="introduction" property="introduction" />
+        <result column="img" property="img" />   
+        <result column="cname" property="cName" />
+        <result column="intr" property="intr" />
+    </resultMap>
+    <select id="queryBooks" parameterType="java.util.HashMap" resultMap="booksResultMap">
+    	select 
+        	b.bookid,
+        	b.bookname,
+        	b.author,
+        	b.publish,
+        	b.price,
+        	b.introduction,
+        	b.img,
+        	c.cid,
+        	c.cname,
+        	c.intr
+        from
+        	book b left outer join bookclass c on b.cid=c.cid
+        <where>
+        	<if test="cid!=null">
+        		and b.cid=#{cid}
+        	</if>
+        </where>
+        	
+    </select>
+</mapper>

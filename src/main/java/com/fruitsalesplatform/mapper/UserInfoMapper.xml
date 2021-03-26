@@ -23,4 +23,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateUser"  parameterType="com.fruitsalesplatform.po.UserInfo">
         update user set upwd=#{upwd} where uid=#{uid}
     </update>
+    
 </mapper>
