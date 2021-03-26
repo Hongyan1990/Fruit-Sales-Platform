@@ -4,13 +4,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fruitsalesplatform.dao.UserInfoMapper">
 	<resultMap type="com.fruitsalesplatform.po.UserInfo" id="userResultMap">
-        <id column="_id" property="uid" />
-        <result column="_name" property="uname" />
-        <result column="_sex" property="usex" />
+        <id column="uid" property="uid" />
+        <result column="uname" property="uname" />
+        <result column="upwd" property="upwd" />
+        <result column="auth" property="auth" />
     </resultMap>
     <!-- 根据uid查询用户 -->
     
     <select id="selectUserById" parameterType="int" resultMap="userResultMap">
-        select uid _id, uname _name, usex _sex from user where uid = #{uid}
+        select uid, uname, upwd, auth from user where uid = #{uid}
     </select>
+    
+    <insert id="addUser" parameterType="com.fruitsalesplatform.po.UserInfo" useGeneratedKeys="true" keyProperty="uid">
+        insert into user (uname, upwd) values(#{uname}, #{upwd})
+        
+    </insert>
+    
+    <update id="updateUser"  parameterType="com.fruitsalesplatform.po.UserInfo">
+        update user set upwd=#{upwd} where uid=#{uid}
+    </update>
 </mapper>

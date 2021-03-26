@@ -15,5 +15,14 @@ public class UserServiceImpl implements UserService {
 	public UserInfo getUserById(int uid) {
 		return userInfoMapper.selectUserById(uid);
 	}
+	
+	public int addUser(UserInfo userInfo) {
+		userInfoMapper.addUser(userInfo);
+		return userInfo.getUid();
+	}
+	
+	public void updateUser(UserInfo userInfo) {
+		userInfoMapper.updateUser(userInfo);
+	}
 
 }

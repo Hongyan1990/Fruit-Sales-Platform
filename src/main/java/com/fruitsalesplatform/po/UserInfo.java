@@ -3,7 +3,8 @@ package com.fruitsalesplatform.po;
 public class UserInfo {
 	private int uid;
 	private String uname;
-	private String usex;
+	private String upwd;
+	private int auth;
 	
 	public int getUid() {
 		return uid;
@@ -17,11 +18,17 @@ public class UserInfo {
 	public void setUname(String uname) {
 		this.uname = uname;
 	}
-	public String getUsex() {
-		return usex;
+	public String getUpwd() {
+		return upwd;
 	}
-	public void setUsex(String usex) {
-		this.usex = usex;
+	public void setUpwd(String upwd) {
+		this.upwd = upwd;
+	}
+	public int getAuth() {
+		return auth;
+	}
+	public void setAuth(int auth) {
+		this.auth = auth;
 	}
 	
 	
