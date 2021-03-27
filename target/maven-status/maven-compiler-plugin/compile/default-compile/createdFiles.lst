@@ -1,6 +1,7 @@
 com\fruitsalesplatform\interceptor\LoginInterceptor.class
 com\fruitsalesplatform\po\BookTypeInfo.class
 com\fruitsalesplatform\dao\UserInfoMapper.class
+com\fruitsalesplatform\po\BaseModel.class
 com\fruitsalesplatform\dao\BookMapper.class
 com\fruitsalesplatform\service\Impl\UserServiceImpl.class
 com\fruitsalesplatform\db\DBConnectionTest.class

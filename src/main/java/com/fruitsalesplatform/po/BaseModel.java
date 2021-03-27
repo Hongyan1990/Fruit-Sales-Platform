@@ -4,7 +4,7 @@ public class BaseModel {
 	private int cId;
 	private int pageNo = 0;
 	private int pageSize = 10;
-	private int startNum;
+	private int startNum = 0;
 	
 	public int getcId() {
 		return cId;

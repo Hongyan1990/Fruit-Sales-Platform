@@ -67,15 +67,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from
         	book b left outer join bookclass c on b.cid=c.cid
         <where>
-        	<if test="cid!=null">
-        		and b.cid=#{cid}
+        	<if test="cId!=null">
+        		and b.cid=#{cId}
         	</if>
-        </where>
-        order by createtime desc
-        <if test="pageNo > 0">
-            limit #{startNum}, #{pageSize}
-        </if>
         	
+        </where>
+        <!-- <if test="pageNo > 0">
+            limit #{startNum}, #{pageSize} 
+        </if> -->
     </select>
     <!-- 添加图书 -->
     <insert id="addBook" parameterType="BookInfo" useGeneratedKeys="true" keyProperty="bookId">

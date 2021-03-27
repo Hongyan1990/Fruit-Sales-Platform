@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,8 @@ public class BookController {
 	// 查询所有图书
 	@RequestMapping(value="/books", method= {RequestMethod.GET})
 	@ResponseBody
-	public List<Map<String, Object>> queryBooks(ModelMap modelMap, @RequestParam BaseModel param) {
+	public List<Map<String, Object>> queryBooks(@ModelAttribute("param") BaseModel param) {
+		System.out.println("cId="+ param.getcId() + ", pageNo=" + param.getPageNo() + ", pageSize=" + param.getPageSize() + ", pageStart="+param.getStartNum());
 		List<Map<String, Object>> books = bookService.queryBooks(param);
 		return books;
 	}

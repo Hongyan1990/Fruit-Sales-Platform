@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="price" property="price" />
         <result column="introduction" property="introduction" />
         <result column="img" property="img" />
+        <result column="createtime" property="createTime" javaType="java.util.Date" />
         <association property="bookType" javaType="BookTypeInfo" >
             <id column="cid" property="cId" />
             <result column="cname" property="cName" />
@@ -27,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	b.price,
         	b.introduction,
         	b.img,
+        	b.createtime,
         	c.cid,
         	c.cname,
         	c.intr
@@ -43,12 +45,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="publish" property="publish" />
         <result column="price" property="price" />
         <result column="introduction" property="introduction" />
+        <result column="createtime" property="createTime" javaType="java.util.Date" />
         <result column="img" property="img" />   
         <result column="cname" property="cName" />
         <result column="intr" property="intr" />
     </resultMap>
     <!-- 查询图书 -->
-    <select id="queryBooks" parameterType="java.util.HashMap" resultMap="booksResultMap">
+    <select id="queryBooks" parameterType="BaseModel" resultMap="booksResultMap">
     	select 
         	b.bookid,
         	b.bookname,
@@ -57,21 +60,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	b.price,
         	b.introduction,
         	b.img,
+        	b.createtime,
         	c.cid,
         	c.cname,
         	c.intr
         from
         	book b left outer join bookclass c on b.cid=c.cid
         <where>
-        	<if test="cid!=null">
-        		and b.cid=#{cid}
+        	<if test="cId!=null">
+        		and b.cid=#{cId}
         	</if>
-        </where>
         	
+        </where>
+        <if test="pageNo > 0">
+            limit #{startNum}, #{pageSize} 
+        </if>
     </select>
     <!-- 添加图书 -->
     <insert id="addBook" parameterType="BookInfo" useGeneratedKeys="true" keyProperty="bookId">
-        insert into book (bookname, author, publish, price, introduction, img, cid) values(#{bookName}, #{author}, #{publish}, #{price}, #{introduction}, #{img}, #{cId})
+        insert into book (bookname, author, publish, price, introduction, img, cid, createtime) values(#{bookName}, #{author}, #{publish}, #{price}, #{introduction}, #{img}, #{cId}, #{createTime})
     </insert>
     <!-- 修改图书 -->
     <update id="updateBook"  parameterType="BookInfo">
@@ -80,5 +87,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 删除图书 -->
     <delete id="deleteBook" parameterType="Integer">
         delete from book where bookid=#{bookId}
+    </delete>
+    <!-- 新增图书类别 -->
+    <insert id="addBookType" parameterType="BookTypeInfo" useGeneratedKeys="true" keyProperty="cId">
+        insert into book (cname, intr) values(#{cName}, #{intr})
+    </insert>
+    <!-- 查询所有图书类别 -->
+    <resultMap type="BookTypeInfo" id="bookTypeResultMap">
+        <id column="cid" property="cId" />
+        <result column="cname" property="cName" />
+        <result column="intr" property="intr" />
+    </resultMap>
+    <select id="queryAllBookType" parameterType="BookTypeInfo" resultMap="bookTypeResultMap" >
+    	select * from bookclass 
+    	<where>
+    		<if test="cId!=null">
+    			and cid=#{cId}
+    		</if>
+    		<if test="cName!=null">
+    			and cname=#{cName}
+    		</if>
+    	</where>
+    </select>
+    
+    <!-- 修改图书类别 -->
+    <update id="updateBookType"  parameterType="BookTypeInfo">
+        update bookclass set cname=#{cName}, intr=#{intr} where cid=#{cId}
+    </update>
+    <!-- 删除图书类别 -->
+    <delete id="deleteBookType" parameterType="Integer">
+        delete from bookclass where cid=#{cId}
     </delete>
 </mapper>
