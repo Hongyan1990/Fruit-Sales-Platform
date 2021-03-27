@@ -1,5 +1,7 @@
 package com.fruitsalesplatform.po;
 
+import java.util.Date;
+
 public class BookInfo {
 	private int bookId;
 	private int cId;
@@ -10,6 +12,7 @@ public class BookInfo {
 	private float price;
 	private String img;
 	private BookTypeInfo bookType;
+	private Date createTime;
 	
 	public int getBookId() {
 		return bookId;
@@ -64,6 +67,12 @@ public class BookInfo {
 	}
 	public void setBookType(BookTypeInfo bookType) {
 		this.bookType = bookType;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 	
 }

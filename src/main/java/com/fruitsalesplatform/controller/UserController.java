@@ -31,7 +31,7 @@ public class UserController {
 		return userInfo;
 	}
 	
-	@RequestMapping(value="/add", method= {RequestMethod.POST})
+	@RequestMapping(value="/user", method= {RequestMethod.POST})
 	@ResponseBody
 	public Map<String, Integer> addUserInfo(ModelMap modelMap, @RequestBody UserInfo userInfo) {
 		int uid = userService.addUser(userInfo);
