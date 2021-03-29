@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fruitsalesplatform.po.BaseModel;
 import com.fruitsalesplatform.po.BookInfo;
 import com.fruitsalesplatform.po.BookTypeInfo;
+import com.fruitsalesplatform.po.ResBaseModel;
 import com.fruitsalesplatform.service.BookService;
 
 @Controller
@@ -36,20 +37,20 @@ public class BookController {
 	// 查询所有图书
 	@RequestMapping(value="/books", method= {RequestMethod.GET})
 	@ResponseBody
-	public List<Map<String, Object>> queryBooks(@ModelAttribute("param") BaseModel param) {
+	public ResBaseModel queryBooks(@ModelAttribute("param") BaseModel param) {
 		System.out.println("cId="+ param.getcId() + ", pageNo=" + param.getPageNo() + ", pageSize=" + param.getPageSize() + ", pageStart="+param.getStartNum());
-		List<Map<String, Object>> books = bookService.queryBooks(param);
-		return books;
+		ResBaseModel res = bookService.queryBooks(param);
+		return res;
 	}
 	// 根据类别查询图书
-	@RequestMapping(value="/books/{cid}", method= {RequestMethod.GET})
-	@ResponseBody
-	public List<Map<String, Object>> queryBooksByCid(ModelMap modelMap, @PathVariable int cid) {
-		BaseModel param = new BaseModel();
-		param.setcId(cid);
-		List<Map<String, Object>> books = bookService.queryBooks(param);
-		return books;
-	}
+//	@RequestMapping(value="/books/{cid}", method= {RequestMethod.GET})
+//	@ResponseBody
+//	public List<Map<String, Object>> queryBooksByCid(ModelMap modelMap, @PathVariable int cid) {
+//		BaseModel param = new BaseModel();
+//		param.setcId(cid);
+//		List<Map<String, Object>> books = bookService.queryBooks(param);
+//		return books;
+//	}
 	// 新增图书
 	@RequestMapping(value="/book", method= {RequestMethod.POST} )
 	@ResponseBody

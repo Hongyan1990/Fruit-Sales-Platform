@@ -1,17 +1,17 @@
 package com.fruitsalesplatform.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.fruitsalesplatform.po.BaseModel;
 import com.fruitsalesplatform.po.BookInfo;
 import com.fruitsalesplatform.po.BookTypeInfo;
+import com.fruitsalesplatform.po.ResBaseModel;
 
 public interface BookService {
 	
 	BookInfo queryBookById(int id);
 	
-	List<Map<String, Object>> queryBooks(BaseModel param);
+	ResBaseModel queryBooks(BaseModel param);
 	
 	int addBook(BookInfo bookInfo);
 	

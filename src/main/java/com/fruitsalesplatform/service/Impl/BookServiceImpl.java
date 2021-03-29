@@ -1,5 +1,6 @@
 package com.fruitsalesplatform.service.Impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import com.fruitsalesplatform.dao.BookMapper;
 import com.fruitsalesplatform.po.BaseModel;
 import com.fruitsalesplatform.po.BookInfo;
 import com.fruitsalesplatform.po.BookTypeInfo;
+import com.fruitsalesplatform.po.ResBaseModel;
 import com.fruitsalesplatform.service.BookService;
 
 @Service("bookService")
@@ -21,8 +23,19 @@ public class BookServiceImpl implements BookService {
 		return bookMapper.queryBookById(id);
 	}
 
-	public List<Map<String, Object>> queryBooks(BaseModel param) {
-		return bookMapper.queryBooks(param);
+	public ResBaseModel queryBooks(BaseModel param) {
+		param.setStartNum(param.getPageNo()>0 ? (param.getPageNo()-1)*param.getPageSize() : 0);
+		ResBaseModel res = new ResBaseModel();
+		Map<String, Object> page = new HashMap<String, Object>();
+		
+		List<Map<String, Object>> data = bookMapper.queryBooks(param);
+		long count = bookMapper.queryBookCount(param);
+		page.put("pageNo", param.getPageNo());
+		page.put("total", count);
+		res.setData(data);
+		res.setState("SUCCESS");
+		res.setPageination(page);
+		return res;
 	}
 
 	public int addBook(BookInfo bookInfo) {

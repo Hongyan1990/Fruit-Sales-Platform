@@ -70,11 +70,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	<if test="cId!=null">
         		and b.cid=#{cId}
         	</if>
-        	
+        	<if test="pageNo!=null">
+        	   and b.bookid in (select bb.bookId from (SELECT book.bookid from book LIMIT #{startNum}, #{pageSize}) as bb)
+        	</if>
         </where>
-        <!-- <if test="pageNo > 0">
-            limit #{startNum}, #{pageSize} 
-        </if> -->
+    </select>
+    <!-- 查询图书数量 -->
+    <select id="queryBookCount" parameterType="BaseModel" resultType="Integer">
+        select 
+		    COUNT(*) as num
+		from
+		    book
+	    <where>
+           <if test="cId!=null">
+               and cid=#{cId}
+           </if>
+         </where>
     </select>
     <!-- 添加图书 -->
     <insert id="addBook" parameterType="BookInfo" useGeneratedKeys="true" keyProperty="bookId">

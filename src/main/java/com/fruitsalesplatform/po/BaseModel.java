@@ -13,7 +13,7 @@ public class BaseModel {
 		this.cId = cId;
 	}
 	public int getPageNo() {
-		return pageNo;
+		return pageNo ;
 	}
 	public void setPageNo(int pageNo) {
 		this.pageNo = pageNo;
@@ -28,7 +28,7 @@ public class BaseModel {
 		return startNum;
 	}
 	public void setStartNum(int startNum) {
-		this.startNum = this.getPageNo() > 0 ? (this.getPageNo() - 1) * this.getPageSize() : 0;
+		this.startNum = startNum;
 	}
 	
 	

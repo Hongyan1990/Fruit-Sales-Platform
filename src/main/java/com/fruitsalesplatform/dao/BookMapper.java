@@ -25,4 +25,6 @@ public interface BookMapper {
 	int updateBookType(BookTypeInfo bookTypeInfo);
 	
 	void deleteBookType(int cId);
+	
+	int queryBookCount(BaseModel param);
 }
