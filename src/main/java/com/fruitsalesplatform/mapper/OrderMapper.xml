@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fruitsalesplatform.dao.OrderMapper">
+	<resultMap type="orderModel" id="orderResultMap">
+		<id column="orderid" property="orderId" />
+		<result column="state" property="state" />
+		<result column="createTime" property="createTime" javaType="java.util.Date"/>
+		<result column="total" property="total" />
+		<association property="user" javaType="UserInfo" >
+			<id  column="userid" property="uId" />
+			<result column="uname" property="uname" />
+		</association>
+		<collection property="books" ofType="java.util.HashMap" select="queryBtachBook" column="carid" />
+	</resultMap>
+	
+	<resultMap type="java.util.HashMap" id="batchReaultMap">
+		<id column="batchid" property="batchId" />
+		<result column="bookid" property="bookId" />
+		<result column="count" property="count" />
+        <result column="bookname" property="bookName" />
+        <result column="author" property="author" />
+        <result column="publish" property="publish" />
+        <result column="price" property="price" />
+        <result column="introduction" property="introduction" />
+        <result column="img" property="img" />
+	</resultMap>
+	
+	<select id="queryBtachBook" parameterType="int" resultMap="batchReaultMap" >
+		select 
+			b.batchid,
+			b.carid,
+			b.count,
+			c.bookid,
+			c.cid,
+			c.bookname,
+			c.author,
+			c.publish,
+			c.price,
+			c.introduction,
+			c.img
+		from 
+			batch b left outer join book c on b.bookid=c.booid
+		where
+			b.carid=#{carId}
+	</select>
+	
+	<select id="queryOrder" parameterType="java.util.HashMap" resultMap="orderResultMap" >
+		select
+			*
+		from 
+			order o left outer join user u on o.userid=u.uid
+		<where>
+			<if test="userId!=null">
+				and o.userid=#{userId}
+			</if>
+			<if test="state!=null">
+				and o.state=#{state}
+			</if>
+		</where>
+			
+	</select>
+</mapper>
