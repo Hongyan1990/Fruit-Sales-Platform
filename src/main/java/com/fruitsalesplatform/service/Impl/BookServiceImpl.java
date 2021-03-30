@@ -28,7 +28,9 @@ public class BookServiceImpl implements BookService {
 		ResBaseModel res = new ResBaseModel();
 		Map<String, Object> page = new HashMap<String, Object>();
 		
-		List<Map<String, Object>> data = bookMapper.queryBooks(param);
+		List<Map<String, Object>> list = bookMapper.queryBooks(param);
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("list", list);
 		long count = bookMapper.queryBookCount(param);
 		page.put("pageNo", param.getPageNo());
 		page.put("total", count);

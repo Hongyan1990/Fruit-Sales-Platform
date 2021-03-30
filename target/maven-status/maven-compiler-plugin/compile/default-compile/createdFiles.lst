@@ -3,12 +3,14 @@ com\fruitsalesplatform\dao\UserInfoMapper.class
 com\fruitsalesplatform\po\BaseModel.class
 com\fruitsalesplatform\service\BatchService.class
 com\fruitsalesplatform\po\ResBaseModel.class
+com\fruitsalesplatform\service\OrderService.class
 com\fruitsalesplatform\service\BookService.class
 com\fruitsalesplatform\controller\BookController.class
 com\fruitsalesplatform\controller\UserController.class
 com\fruitsalesplatform\service\UserService.class
 com\fruitsalesplatform\po\BookTypeInfo.class
 com\fruitsalesplatform\po\CarModel.class
+com\fruitsalesplatform\service\Impl\OrderServiceImpl.class
 com\fruitsalesplatform\dao\BatchMapper.class
 com\fruitsalesplatform\dao\BookMapper.class
 com\fruitsalesplatform\po\OrderModel.class
@@ -17,7 +19,9 @@ com\fruitsalesplatform\controller\BatchController.class
 com\fruitsalesplatform\db\DBConnectionTest.class
 com\fruitsalesplatform\service\Impl\BookServiceImpl.class
 com\fruitsalesplatform\po\BookInfo.class
+com\fruitsalesplatform\controller\OrderController.class
 com\fruitsalesplatform\dao\CarMapper.class
+com\fruitsalesplatform\dao\OrderMapper.class
 com\fruitsalesplatform\service\Impl\BatchServiceImpl.class
 com\fruitsalesplatform\po\UserInfo.class
 com\fruitsalesplatform\po\BatchInfo.class

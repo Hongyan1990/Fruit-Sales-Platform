@@ -7,7 +7,7 @@ public class ResBaseModel {
 	private String state;
 	private String msg = "";
 	private Map<String, Object> pageination;
-	private List<Map<String, Object>> data;
+	private Map<String, Object> data;
 	
 	public String getState() {
 		return state;
@@ -27,10 +27,10 @@ public class ResBaseModel {
 	public void setPageination(Map<String, Object> pageination) {
 		this.pageination = pageination;
 	}
-	public List<Map<String, Object>> getData() {
+	public Map<String, Object> getData() {
 		return data;
 	}
-	public void setData(List<Map<String, Object>> data) {
+	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
 	

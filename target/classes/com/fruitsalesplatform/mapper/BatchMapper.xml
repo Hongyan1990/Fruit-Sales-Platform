@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fruitsalesplatform.dao.BatchMapper">
+	<resultMap type="java.util.HashMap" id="batchReaultMap">
+		<id column="batchid" property="batchId" />
+		<result column="carid" property="carId" />
+		<result column="bookid" property="bookId" />
+		<result column="count" property="count" />
+        <result column="cid" property="cId" />
+        <result column="bookname" property="bookName" />
+        <result column="author" property="author" />
+        <result column="publish" property="publish" />
+        <result column="price" property="price" />
+        <result column="introduction" property="introduction" />
+        <result column="img" property="img" />
+	</resultMap>
+	
+	<select id="queryBtachBook" parameterType="int" resultMap="batchReaultMap" >
+		select 
+			b.batchid,
+			b.carid,
+			b.count,
+			c.bookid,
+			c.cid,
+			c.bookname,
+			c.author,
+			c.publish,
+			c.price,
+			c.introduction,
+			c.img
+		from 
+			batch b left outer join book c on b.bookid=c.bookid
+		where
+			b.carid=#{carId}
+	</select>
+	
+	<!-- 新建batch -->
+    <insert id="addBatch" parameterType="BatchInfo" useGeneratedKeys="true" keyProperty="batchId">
+        insert into batch (carid, bookid, count) values(#{carId}, #{bookId}, #{count})
+    </insert>
+    
+    <!-- 更新 -->
+    <update id="updateBatch"  parameterType="BatchInfo">
+        update batch set count=#{count} where batchid=#{batchId}
+    </update>
+    
+    <!-- 删除 -->
+    <delete id="deleteBatch" parameterType="Integer">
+        delete from batch where batchid=#{batchId}
+    </delete>
+</mapper>

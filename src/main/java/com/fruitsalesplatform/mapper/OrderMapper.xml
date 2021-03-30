@@ -6,13 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="orderModel" id="orderResultMap">
 		<id column="orderid" property="orderId" />
 		<result column="state" property="state" />
-		<result column="createTime" property="createTime" javaType="java.util.Date"/>
+		<result column="cid" property="carId" />
+		<result column="createtime" property="createTime" javaType="java.util.Date"/>
+		<result column="updatetime" property="updateTime" javaType="java.util.Date"/>
 		<result column="total" property="total" />
 		<association property="user" javaType="UserInfo" >
-			<id  column="userid" property="uId" />
+			<id  column="userid" property="uid" />
 			<result column="uname" property="uname" />
 		</association>
-		<collection property="books" ofType="java.util.HashMap" select="queryBtachBook" column="carid" />
+		<collection property="books" ofType="java.util.HashMap" select="queryBtachBook" column="cid" />
 	</resultMap>
 	
 	<resultMap type="java.util.HashMap" id="batchReaultMap">
@@ -41,16 +43,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			c.introduction,
 			c.img
 		from 
-			batch b left outer join book c on b.bookid=c.booid
+			batch b left outer join book c on b.bookid=c.bookid
 		where
 			b.carid=#{carId}
 	</select>
 	
 	<select id="queryOrder" parameterType="java.util.HashMap" resultMap="orderResultMap" >
 		select
-			*
+			o.orderid,
+			o.userid,
+			o.state,
+			o.createtime,
+			o.updatetime,
+			o.total,
+			o.cid,
+			u.uid,
+			u.uname,
+			u.auth
 		from 
-			order o left outer join user u on o.userid=u.uid
+			myorder o left outer join user u on o.userid=u.uid
 		<where>
 			<if test="userId!=null">
 				and o.userid=#{userId}
@@ -61,4 +72,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 			
 	</select>
+	<!-- 新增订单 -->
+    <insert id="addOrder" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="orderId">
+        insert into myorder (userid, state, createtime, updatetime, total, cid) values(#{userId}, #{state}, #{createTime}, #{updateTime}, #{total}, #{carId})
+    </insert>
+	<update id="updateOrder" parameterType="java.util.HashMap" >
+		update myorder set state=#{state}, updatetime=#{updateTime} where orderid=#{orderId}
+	</update>
 </mapper>

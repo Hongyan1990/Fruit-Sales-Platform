@@ -6,7 +6,6 @@ import java.util.Map;
 
 public class OrderModel {
 	private int orderId;
-	private int userId;
 	private int carId;
 	private int state;
 	private Date createTime;
@@ -20,12 +19,7 @@ public class OrderModel {
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+
 	public int getState() {
 		return state;
 	}

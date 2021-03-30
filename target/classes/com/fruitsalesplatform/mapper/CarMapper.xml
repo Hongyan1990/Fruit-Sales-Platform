@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fruitsalesplatform.dao.CarMapper">
+	<resultMap type="CarModel" id="carReaultMap">
+		<id column="cid" property="cId" />
+		<result column="uid" property="uId" />
+		<result column="state" property="state" />
+		<result column="total" property="total" />
+	</resultMap>
+	
+	<select id="queryDoCar" parameterType="int" resultMap="carReaultMap" >
+		select * from car c where c.uid=#{uId} and c.state=0
+	</select>
+	
+	<!-- 新建购物车 -->
+    <insert id="addCar" parameterType="CarModel" useGeneratedKeys="true" keyProperty="carId">
+        insert into car (uid, state, total) values(#{uId}, #{state}, #{total})
+    </insert>
+    
+    <!-- 更新购物车 -->
+    <update id="updateCar"  parameterType="CarModel">
+        update car set state=#{state}, total=#{total} where cid=#{cId}
+    </update>
+</mapper>
