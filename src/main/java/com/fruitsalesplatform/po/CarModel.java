@@ -1,15 +1,15 @@
 package com.fruitsalesplatform.po;
 
 public class CarModel {
-	private int cId;
+	private int carId;
 	private int uId;
 	private int state;
 	private float total;
 	public int getcId() {
-		return cId;
+		return carId;
 	}
-	public void setcId(int cId) {
-		this.cId = cId;
+	public void setcId(int carId) {
+		this.carId = carId;
 	}
 	public int getuId() {
 		return uId;

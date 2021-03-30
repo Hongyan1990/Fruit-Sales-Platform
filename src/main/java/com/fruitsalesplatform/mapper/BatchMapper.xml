@@ -3,21 +3,18 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fruitsalesplatform.dao.BatchMapper">
-	<resultMap type="BatchInfo" id="batchReaultMap">
+	<resultMap type="java.util.HashMap" id="batchReaultMap">
 		<id column="batchid" property="batchId" />
 		<result column="carid" property="carId" />
 		<result column="bookid" property="bookId" />
 		<result column="count" property="count" />
-		<association property="book" javaType="BookInfo" >
-			<id column="bookid" property="bookId" />
-	        <result column="cid" property="cId" />
-	        <result column="bookname" property="bookName" />
-	        <result column="author" property="author" />
-	        <result column="publish" property="publish" />
-	        <result column="price" property="price" />
-	        <result column="introduction" property="introduction" />
-	        <result column="img" property="img" />
-		</association>
+        <result column="cid" property="cId" />
+        <result column="bookname" property="bookName" />
+        <result column="author" property="author" />
+        <result column="publish" property="publish" />
+        <result column="price" property="price" />
+        <result column="introduction" property="introduction" />
+        <result column="img" property="img" />
 	</resultMap>
 	
 	<select id="queryBtachBook" parameterType="int" resultMap="batchReaultMap" >
@@ -34,14 +31,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			c.introduction,
 			c.img
 		from 
-			batch b left outer join book c on b.bookid=c.booid
+			batch b left outer join book c on b.bookid=c.bookid
 		where
 			b.carid=#{carId}
 	</select>
 	
 	<!-- 新建batch -->
     <insert id="addBatch" parameterType="BatchInfo" useGeneratedKeys="true" keyProperty="batchId">
-        insert into batch (carid, bookid, count) values(#{carid}, #{bookid}, #{count})
+        insert into batch (carid, bookid, count) values(#{carId}, #{bookId}, #{count})
     </insert>
     
     <!-- 更新 -->

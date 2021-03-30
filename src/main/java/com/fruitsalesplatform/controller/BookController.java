@@ -72,7 +72,7 @@ public class BookController {
 	// 删除图书
 	@RequestMapping(value="/book/{bookId}", method= {RequestMethod.DELETE})
 	@ResponseBody
-	public Map<String, String> editBook(Model model, @PathVariable int bookId) {
+	public Map<String, String> deleteBook(Model model, @PathVariable int bookId) {
 		bookService.deleteBook(bookId);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("state", "SUCCESS");
