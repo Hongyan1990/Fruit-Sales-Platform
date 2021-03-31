@@ -1,8 +1,11 @@
 package com.fruitsalesplatform.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fruitsalesplatform.po.BaseModel;
 import com.fruitsalesplatform.po.BookInfo;
@@ -104,6 +108,29 @@ public class BookController {
 		int cId = bookService.updateBookType(bookTypeInfo);
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("cId", cId);
+		return map;
+	}
+	
+	// 上传图片
+	@RequestMapping("/upload")
+	@ResponseBody
+	public Map<String, String> uploadImg(Model model, MultipartFile file) {
+		String originalFilename = file.getOriginalFilename();
+		String newFilename = null;
+		if(file!=null && originalFilename!=null && originalFilename.length()>0) {
+			String picPath = "C:\\Users\\Administrator\\Desktop\\upload\\";
+			newFilename = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
+			File newFile = new File(picPath + newFilename);
+			try {
+				file.transferTo(newFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("fileName", newFilename);
 		return map;
 	}
 }
